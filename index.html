@@ -3,34 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SelskiPazar.bg – Мястото, където селото оживява онлайн</title>
+    <title>SelskiPazar.bg – Селската търговска мрежа на България</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
-      /* ===== RESET & ROOT ===== */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+      /* ================= UI‑Kit променливи ================= */
       :root {
         --primary-green: #2d5a27;
         --primary-light: #4a7c59;
         --primary-dark: #1f3d1b;
         --nature-green: #7cb342;
         --forest-green: #2e7d32;
+
         --accent-gold: #f57c00;
         --accent-orange: #ff6b35;
+        --accent-harvest: #ff8f00;
         --accent-warm: #ffb74d;
-        --white: #fff;
+
+        --white: #ffffff;
         --cream: #faf9f7;
         --light-gray: #f5f7fa;
         --medium-gray: #64748b;
+        --dark-gray: #1e293b;
         --charcoal: #0f172a;
-        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 /0.1),
-          0 4px 6px -4px rgb(0 0 0 /0.1);
+
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+
         --gradient-primary: linear-gradient(
           135deg,
           var(--primary-green) 0%,
@@ -41,605 +47,1357 @@
           var(--nature-green) 0%,
           var(--primary-light) 100%
         );
+        --gradient-harvest: linear-gradient(
+          135deg,
+          var(--accent-gold) 0%,
+          var(--accent-harvest) 100%
+        );
         --gradient-warm: linear-gradient(
           135deg,
           var(--accent-warm) 0%,
           var(--accent-orange) 100%
         );
       }
+
+      /* ================= Base ================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
-        font-family: "Inter", system-ui, sans-serif;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
         background: var(--cream);
         color: var(--charcoal);
         line-height: 1.7;
+        font-weight: 400;
         -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       .container {
-        max-width: 1400px;
+        max-width: 1360px;
         margin: 0 auto;
         padding: 0 24px;
       }
 
-      /* ===== HEADER ===== */
-      .header {
-        background: var(--white);
-        border-bottom: 1px solid #e2e8f0;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-      }
-      .nav-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-      }
-      .nav-logo {
-        font-family: "Poppins", sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-        background: var(--gradient-primary);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-decoration: none;
-      }
-      .nav-menu {
-        display: flex;
-        gap: 30px;
-        list-style: none;
-        align-items: center;
-      }
-      .nav-link {
-        font-weight: 500;
-        color: var(--charcoal);
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 8px;
-        transition: 0.3s;
-      }
-      .nav-link:hover,
-      .nav-link.active {
-        background: rgba(45, 90, 39, 0.07);
-      }
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 24px;
-        border: none;
-        border-radius: 12px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      .btn-primary {
-        background: var(--gradient-primary);
-        color: #fff;
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-      }
-      .btn-secondary {
-        background: var(--white);
-        color: var(--primary-green);
-        border: 2px solid var(--primary-green);
-      }
-      .btn-secondary:hover {
-        background: var(--primary-green);
-        color: #fff;
-      }
-
-      /* ===== HERO ===== */
+      /* ================= HERO ================= */
       .hero {
-        background: linear-gradient(
-          135deg,
-          var(--primary-green) 0%,
-          var(--forest-green) 50%,
-          var(--nature-green) 100%
-        );
-        padding: 100px 0;
+        background: var(--gradient-primary);
+        padding: 90px 0 120px;
         text-align: center;
         position: relative;
         overflow: hidden;
       }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3e%3cdefs%3e%3cpattern id='grain' width='100' height='100' patternUnits='userSpaceOnUse'%3e%3ccircle cx='50' cy='50' r='1' fill='white' opacity='0.07'/%3e%3ccircle cx='20' cy='20' r='0.6' fill='white' opacity='0.04'/%3e%3ccircle cx='80' cy='30' r='0.8' fill='white' opacity='0.06'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100' height='100' fill='url(%23grain)'/%3e%3c/svg%3e");
+        opacity: 0.25;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 820px;
+        margin: 0 auto;
+      }
       .hero h1 {
         font-family: "Poppins", sans-serif;
-        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-size: clamp(2.8rem, 6vw, 4.5rem);
         font-weight: 800;
-        color: #fff;
-        margin-bottom: 20px;
+        color: var(--white);
+        margin-bottom: 28px;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
       .hero .subtitle {
-        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: 300;
-        margin-bottom: 40px;
-        max-width: 760px;
-        margin-inline: auto;
+        font-size: clamp(1.1rem, 3vw, 1.6rem);
+        color: rgba(255, 255, 255, 0.96);
+        margin-bottom: 50px;
       }
       .hero-buttons {
         display: flex;
         gap: 20px;
         justify-content: center;
         flex-wrap: wrap;
+        margin-bottom: 70px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 18px 38px;
+        border: none;
+        border-radius: 14px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        left: -100%;
+      }
+      .btn:hover::before {
+        left: 100%;
+        transition: left 0.6s;
+      }
+      .btn-primary {
+        background: var(--gradient-harvest);
+        color: var(--white);
+        box-shadow: var(--shadow-lg);
+      }
+      .btn-primary:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+      }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--white);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        backdrop-filter: blur(10px);
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-2px);
       }
 
-      /* ===== GENERIC SECTIONS ===== */
-      section {
-        scroll-margin-top: 96px;
+      /* ================= SECTION WRAPPER ================= */
+      .section {
+        margin: 100px 0;
+        background: var(--white);
+        border-radius: 26px;
+        padding: 80px 60px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 4px;
+        background: var(--gradient-primary);
       }
       .section-title {
         font-family: "Poppins", sans-serif;
-        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-size: clamp(2rem, 4vw, 2.8rem);
         font-weight: 700;
         text-align: center;
-        margin-bottom: 60px;
+        color: var(--charcoal);
+        margin-bottom: 30px;
         position: relative;
       }
       .section-title::after {
         content: "";
         position: absolute;
-        bottom: -18px;
         left: 50%;
         transform: translateX(-50%);
-        width: 90px;
+        bottom: -15px;
+        width: 80px;
         height: 3px;
-        background: var(--gradient-warm);
+        background: var(--gradient-harvest);
         border-radius: 2px;
       }
-
-      /* ===== GRID HELPERS ===== */
-      .grid-auto {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-      }
-      .card {
-        background: var(--white);
-        border-radius: 20px;
-        padding: 40px 32px;
-        text-align: center;
-        box-shadow: var(--shadow-lg);
-        transition: 0.4s;
-      }
-      .card:hover {
-        transform: translateY(-6px);
-      }
-
-      /* ===== FEATURES ===== */
-      .feature-icon {
-        font-size: 2.8rem;
-        margin-bottom: 20px;
-        color: var(--primary-green);
-      }
-      .feature-desc {
+      .section-subtitle {
+        font-size: 1.15rem;
         color: var(--medium-gray);
-        font-size: 0.95rem;
-      }
-
-      /* ===== HOW IT WORKS ===== */
-      .steps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 30px;
         text-align: center;
-      }
-      .step-number {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: var(--primary-green);
-        color: #fff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto 18px;
-        font-weight: 700;
+        max-width: 600px;
+        margin: 0 auto 60px;
       }
 
-      /* ===== TESTIMONIALS ===== */
-      .testimonials-section {
+      /* ================= HOW IT WORKS ================= */
+      .how-it-works {
+        display: grid;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        margin-top: 60px;
+      }
+      .step {
+        text-align: center;
         background: var(--light-gray);
-        padding: 80px 0;
-      }
-      .testimonial-card {
-        background: #fff;
+        padding: 38px 28px;
         border-radius: 20px;
-        padding: 32px;
-        box-shadow: var(--shadow-lg);
+        transition: 0.3s;
       }
-      .testimonial-author {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin-top: 20px;
+      .step:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-md);
       }
-      .author-img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: var(--gradient-nature);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        color: #fff;
+      .step-icon {
+        font-size: 3.3rem;
+        margin-bottom: 22px;
+        display: block;
+      }
+      .step-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 12px;
+      }
+      .step-description {
+        color: var(--dark-gray);
       }
 
-      /* ===== MISSION ===== */
-      .mission-section {
+      /* ================= CATEGORIES ================= */
+      .categories {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        margin-top: 60px;
+      }
+      .category-card {
         background: var(--white);
-        padding: 80px 0;
-      }
-      .mission-grid {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 60px;
-        align-items: center;
-      }
-      .mission-text {
-        flex: 1 1 480px;
-      }
-      .mission-img {
-        flex: 1 1 320px;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: var(--shadow-lg);
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      .mission-img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+      }
+      .category-header {
+        height: 140px;
+        background: var(--gradient-nature);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .category-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.1) 50%,
+          transparent 70%
+        );
+        animation: shimmer 3s infinite;
+      }
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }
+      .category-content {
+        padding: 28px;
+      }
+      .category-title {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--charcoal);
+        margin-bottom: 10px;
+      }
+      .category-description {
+        color: var(--medium-gray);
+        margin-bottom: 18px;
+      }
+      .category-examples {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .example-tag {
+        background: rgba(45, 90, 39, 0.1);
+        color: var(--primary-green);
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.82rem;
+        font-weight: 500;
       }
 
-      /* ===== STATS ===== */
-      .stats-grid {
+      /* ================= BENEFITS ================= */
+      .benefits {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 30px;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        margin-top: 60px;
       }
-      .stat-card {
-        background: var(--gradient-nature);
-        color: #fff;
+      .benefit {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 30px;
+        background: var(--light-gray);
         border-radius: 20px;
-        padding: 40px 30px;
-        text-align: center;
+        transition: 0.3s;
       }
-      .stat-number {
-        font-size: 3rem;
-        font-weight: 800;
+      .benefit:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .benefit-icon {
+        font-size: 2.3rem;
+        flex-shrink: 0;
+      }
+      .benefit-content h3 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--charcoal);
         margin-bottom: 8px;
       }
-      .stat-label {
-        opacity: 0.9;
+      .benefit-content p {
+        color: var(--dark-gray);
       }
 
-      /* ===== CTA ===== */
-      .cta-section {
+      /* ================= FEEDBACK ================= */
+      .feedback-section {
         background: var(--gradient-primary);
-        color: #fff;
-        text-align: center;
-        padding: 90px 24px;
+        color: var(--white);
       }
-      .cta-title {
-        font-family: "Poppins", sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        font-weight: 700;
-        margin-bottom: 20px;
+      .feedback-section::before {
+        display: none;
       }
-      .cta-desc {
-        font-size: 1.1rem;
+      .feedback-form {
+        max-width: 780px;
+        margin: 0 auto;
+      }
+      .form-grid {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         margin-bottom: 40px;
-        max-width: 700px;
-        margin-inline: auto;
+      }
+      .form-group {
+        margin-bottom: 24px;
+      }
+      .form-label {
+        display: block;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 16px 20px;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--white);
+        font-size: 1rem;
+        backdrop-filter: blur(10px);
+        transition: 0.3s;
+      }
+      .form-input::placeholder,
+      .form-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: var(--accent-warm);
+        box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.25);
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .form-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 12px center;
+        background-repeat: no-repeat;
+        background-size: 16px;
+        padding-right: 42px;
+      }
+      .form-textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .submit-btn {
+        background: var(--gradient-harvest);
+        color: var(--white);
+        padding: 18px 36px;
+        border: none;
+        border-radius: 14px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: var(--shadow-lg);
+        transition: 0.3s;
+      }
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-xl);
       }
 
-      /* ===== FOOTER ===== */
+      /* ================= FOOTER ================= */
       .footer {
         background: var(--charcoal);
-        color: #fff;
-        padding: 60px 0 40px;
+        color: var(--white);
+        padding: 80px 60px 40px;
+        border-radius: 26px 26px 0 0;
+        text-align: center;
+        margin-top: 100px;
       }
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
-      }
-      .footer-section h3 {
+      .footer h3 {
         font-family: "Poppins", sans-serif;
-        font-size: 1.2rem;
-        margin-bottom: 20px;
+        font-size: 2rem;
+        margin-bottom: 18px;
+        background: var(--gradient-harvest);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .footer-section a {
-        color: rgba(255, 255, 255, 0.7);
+      .footer p {
+        color: rgba(255, 255, 255, 0.86);
+        margin-bottom: 26px;
+        line-height: 1.7;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+        margin-bottom: 34px;
+      }
+      .footer-link {
+        color: rgba(255, 255, 255, 0.76);
+        font-weight: 500;
         text-decoration: none;
         transition: 0.3s;
       }
-      .footer-section a:hover {
+      .footer-link:hover {
         color: var(--accent-warm);
       }
-      .footer-bottom {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.45);
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 26px;
-      }
 
-      /* ===== RESPONSIVE ===== */
+      /* ================= RESPONSIVE ================= */
       @media (max-width: 768px) {
-        .nav-menu {
-          display: none;
-        }
-        .mission-grid {
-          flex-direction: column;
+        .section {
+          padding: 50px 32px;
+          margin: 70px 0;
         }
         .hero {
-          padding: 80px 0;
+          padding: 70px 0 90px;
+        }
+        .hero-buttons {
+          flex-direction: column;
+        }
+        .btn {
+          width: 100%;
+          max-width: 320px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Header -->
-    <header class="header">
+    <!-- ========= HERO ========= -->
+    <header class="hero">
       <div class="container">
-        <div class="nav-container">
-          <a href="#" class="nav-logo">🌾 SelskiPazar.bg</a>
-          <nav>
-            <ul class="nav-menu">
-              <li>
-                <a href="#mission" class="nav-link active">Нашата мисия</a>
-              </li>
-              <li><a href="#features" class="nav-link">Функции</a></li>
-              <li><a href="#how" class="nav-link">Как работи</a></li>
-              <li><a href="#community" class="nav-link">Общност</a></li>
-              <li><a href="#" class="btn btn-secondary">Вход</a></li>
-              <li><a href="#" class="btn btn-primary">Добави обява</a></li>
-            </ul>
-          </nav>
+        <div class="hero-content">
+          <h1>🌾 SelskiPazar.bg</h1>
+          <p class="subtitle">
+            Локалната платформа, която свързва <strong>село и град</strong> –
+            намери домашна храна, майстори и услуги на картата до теб.
+          </p>
+          <div class="hero-buttons">
+            <a href="#feedback" class="btn btn-primary">🚀 Искам да участвам</a>
+            <a href="#how-it-works" class="btn btn-secondary"
+              >🗺️ Виж как работи</a
+            >
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>Селото среща бъдещето</h1>
-        <p class="subtitle">
-          Един клик – и вече си до фермера, майстора или съседа с най‑сладкия
-          мед. Ние свързваме хора, не просто профили.
+    <main class="container">
+      <!-- ========= ABOUT ========= -->
+      <section class="section" id="about">
+        <h2 class="section-title">🏡 Селският пазар в джоба ти</h2>
+        <p class="section-subtitle">
+          Първата българска
+          <span style="font-weight: 600; color: var(--accent-gold)"
+            >локална платформа</span
+          >, която показва на интерактивна карта къде са най-близките продукти и
+          услуги.
         </p>
-        <div class="hero-buttons">
-          <a href="#features" class="btn btn-primary"
-            >Разгледай възможностите</a
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 56px;
+            margin-top: 60px;
+            align-items: center;
+          "
+        >
+          <div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.7rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 24px;
+              "
+            >
+              Създадено за всеки, който иска:
+            </h3>
+            <ul
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                list-style: none;
+              "
+            >
+              <li style="display: flex; align-items: center; gap: 16px">
+                <span style="font-size: 1.6rem">🗺️</span>
+                <span
+                  ><strong>Карта с всичко наблизо</strong> – виждаш продукти и
+                  услуги в радиус от 1-25км.</span
+                >
+              </li>
+              <li style="display: flex; align-items: center; gap: 16px">
+                <span style="font-size: 1.6rem">🥚</span>
+                <span
+                  ><strong>Домашна храна</strong> – яйца, мед, сирене и
+                  зеленчуци директно от производителя.</span
+                >
+              </li>
+              <li style="display: flex; align-items: center; gap: 16px">
+                <span style="font-size: 1.6rem">☎️</span>
+                <span
+                  ><strong>Директна връзка</strong> – чат и 
+                  "Обади ми се" бутон.</span
+                >
+              </li>
+              <!-- <li style="display: flex; align-items: center; gap: 16px">
+                <span style="font-size: 1.6rem">🤖</span>
+                <span
+                  ><strong>AI асистент</strong> – умни препоръки и съвети за
+                  всяка покупка.</span
+                >
+              </li> -->
+              <li style="display: flex; align-items: center; gap: 16px">
+                <span style="font-size: 1.6rem">🔄</span>
+                <span
+                  ><strong>Бартер зона</strong> – размяна на продукти и услуги
+                  без пари.</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 42px;
+              border-radius: 22px;
+              text-align: center;
+            "
           >
-          <a href="#mission" class="btn btn-secondary">Научи повече</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mission -->
-    <section id="mission" class="mission-section">
-      <div class="container">
-        <div class="mission-grid">
-          <div class="mission-text">
-            <h2 class="section-title">Нашата мисия</h2>
-            <p>
-              Да вдъхнем дигитален живот на българското село – без да сменяме
-              неговия дух. <strong>SelskiPazar.bg</strong> е мястото, където
-              локалните умения и вкусове стават видими за цялата страна. Без
-              скрити такси, без сложни правила – просто истински хора, готови да
-              си помагат.
-            </p>
-            <p>
-              Платформата е безплатна за всеки, който търси продукт или услуга.
-              Продавачите получават първите си обяви като подарък, за да можем
-              заедно да изградим доверие и споделена стойност.
-            </p>
-          </div>
-          <div class="mission-img">
-            <img
-              src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=80"
-              alt="Български пейзаж"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section
-      id="features"
-      class="mission-section"
-      style="background: var(--light-gray)"
-    >
-      <div class="container">
-        <h2 class="section-title">Какво прави SelskiPazar.bg различен?</h2>
-        <div class="grid-auto">
-          <div class="card">
-            <span class="feature-icon">📍</span>
-            <h3>Локализирано търсене</h3>
-            <p class="feature-desc">
-              Филтрирай по разстояние и виж само хора, които наистина са ти
-              наблизо.
-            </p>
-          </div>
-          <div class="card">
-            <span class="feature-icon">🤝</span>
-            <h3>Директна връзка</h3>
-            <p class="feature-desc">
-              Чат, обаждане или видео – избираш най‑удобния начин да се
-              договориш без посредници.
-            </p>
-          </div>
-          <div class="card">
-            <span class="feature-icon">🤖</span>
-            <h3>Умен помощник</h3>
-            <p class="feature-desc">
-              AI, който намира точния човек за задачата и пише описание вместо
-              теб.
-            </p>
-          </div>
-          <div class="card">
-            <span class="feature-icon">🛡️</span>
-            <h3>Прозрачност & доверие</h3>
-            <p class="feature-desc">
-              Верифицирани профили и рейтинг само от реални клиенти – никакви
-              фалшиви звезди.
+            <div style="font-size: 5rem; margin-bottom: 18px">🎯</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.55rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 14px;
+              "
+            >
+              Нашата мисия
+            </h3>
+            <p style="color: var(--dark-gray); line-height: 1.75">
+              Да свържем <strong>селските богатства</strong> с градските нужди и
+              да създадем доверие между съседи чрез технологии, които правят
+              търговията <strong>лесна, сигурна и човешка</strong>.
             </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- How It Works -->
-    <section id="how" class="mission-section">
-      <div class="container">
-        <h2 class="section-title">3 стъпки и си готов</h2>
-        <div class="steps-grid">
-          <div class="card">
-            <div class="step-number">1</div>
-            <h4>Търсиш</h4>
-            <p>Избираш категория или просто пишеш „домашно сирене“.</p>
-          </div>
-          <div class="card">
-            <div class="step-number">2</div>
-            <h4>Свързваш се</h4>
-            <p>Отваряш чат или звъниш веднага през приложението.</p>
-          </div>
-          <div class="card">
-            <div class="step-number">3</div>
-            <h4>Получаваш</h4>
-            <p>
-              Вземаш продукта/услугата и оценяваш. Така помагаш на следващия
-              клиент.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="community" class="testimonials-section">
-      <div class="container">
-        <h2 class="section-title">Гласове от общността</h2>
-        <div class="grid-auto">
-          <div class="testimonial-card">
-            <p>
-              “Продадох първия си мед за две минути, без да плащам нищо
-              предварително. Хората идват направо у дома!”
-            </p>
-            <div class="testimonial-author">
-              <div class="author-img">🐝</div>
-              <span>Илия, пчелар – с. Равна</span>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p>
-              “Намерих майстор за ламаринения покрив, който живее на 5 км.
-              Договорихме се в чата, на другия ден беше готово.”
-            </p>
-            <div class="testimonial-author">
-              <div class="author-img">🔨</div>
-              <span>Гергана – с. Мечка</span>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <p>
-              “AI‑помощникът ми предложи идеално описание за моите сирена,
-              изглежда супер професионално.”
-            </p>
-            <div class="testimonial-author">
-              <div class="author-img">🧀</div>
-              <span>Соня – мандра „Бял върх“</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="mission-section" style="background: var(--white)">
-      <div class="container">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">5 000+</div>
-            <div class="stat-label">Активни обяви</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">1 200+</div>
-            <div class="stat-label">Проверени профила</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">320</div>
-            <div class="stat-label">Услуги за селото</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">98%</div>
-            <div class="stat-label">Доволни потребители</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container">
-        <h2 class="cta-title">
-          Смяташ ли, че твоят труд заслужава повече видимост?
-        </h2>
-        <p class="cta-desc">
-          Присъедини се безплатно, сподели това, което правиш най‑добре, и
-          намери хора, които го ценят.
+      <!-- ========= HOW IT WORKS ========= -->
+      <section class="section" id="how-it-works">
+        <h2 class="section-title">⚙️ Как работи платформата?</h2>
+        <p class="section-subtitle">
+          Четири лесни стъпки до намирането на това, което търсиш.
         </p>
-        <a href="#" class="btn btn-primary">Създай профил за минута</a>
-      </div>
-    </section>
+        <div class="how-it-works">
+          <div class="step">
+            <span class="step-icon">🗺️</span>
+            <h3 class="step-title">1. Виждаш на картата</h3>
+            <p class="step-description">
+              Отваряш приложението и виждаш интерактивна карта с всички продукти
+              и услуги в твоя район.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step-icon">🔍</span>
+            <h3 class="step-title">2. Филтрираш по нужди</h3>
+            <p class="step-description">
+              Избираш категория, разстояние и цена. Картата ти показва
+              персонализирани препоръки.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step-icon">💬</span>
+            <h3 class="step-title">3. Свързваш се директно</h3>
+            <p class="step-description">
+                Пишеш в чата или натискаш „Обади ми се“ за моментален контакт.
+            </p>
+          </div>
+          <div class="step">
+            <span class="step-icon">👍</span>
+            <h3 class="step-title">4. Срещате се и завършвате</h3>
+            <p class="step-description">
+              Плащането си го уговаряте лично – в брой или както ви е удобно.
+            </p>
+          </div>
+        </div>
+      </section>
 
-    <!-- Footer -->
+      <!-- ========= CATEGORIES ========= -->
+      <section class="section">
+        <h2 class="section-title">🛒 Какво ще намериш в платформата?</h2>
+        <p class="section-subtitle">
+          Основните категории, които правят живота по-лесен.
+        </p>
+        <div class="categories">
+          <div class="category-card">
+            <div class="category-header">🥕</div>
+            <div class="category-content">
+              <h3 class="category-title">Домашни продукти</h3>
+              <p class="category-description">
+                Пресни плодове, зеленчуци, млечни продукти и месо от локални
+                производители.
+              </p>
+              <div class="category-examples">
+                <span class="example-tag">Био домати</span>
+                <span class="example-tag">Прясно мляко</span>
+                <span class="example-tag">Домашен мед</span>
+                <span class="example-tag">Козе сирене</span>
+              </div>
+            </div>
+          </div>
+          <div class="category-card">
+            <div class="category-header">🔧</div>
+            <div class="category-content">
+              <h3 class="category-title">Майстори и услуги</h3>
+              <p class="category-description">
+                Домашни ремонти, градинарство, почистване, транспорт и
+                специализирани услуги.
+              </p>
+              <div class="category-examples">
+                <span class="example-tag">Покривни работи</span>
+                <span class="example-tag">Водопровод</span>
+                <span class="example-tag">Косене</span>
+                <span class="example-tag">Превоз</span>
+              </div>
+            </div>
+          </div>
+          <div class="category-card">
+            <div class="category-header">🏠</div>
+            <div class="category-content">
+              <h3 class="category-title">Дом и градина</h3>
+              <p class="category-description">
+                Всичко за дома, градината и бита - от мебели до градински
+                инструменти.
+              </p>
+              <div class="category-examples">
+                <span class="example-tag">Дърводелство</span>
+                <span class="example-tag">Декорации</span>
+                <span class="example-tag">Цветя</span>
+                <span class="example-tag">Семена</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= UNIQUE FEATURES ========= -->
+      <section class="section">
+        <h2 class="section-title">⭐ Какво ни прави уникални?</h2>
+        <p class="section-subtitle">
+          Функции, които няма да намериш никъде другаде в България.
+        </p>
+        <div
+          style="
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            margin-top: 60px;
+          "
+        >
+          <!-- <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">🤖</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              AI Асистент
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Интелигентни препоръки за продукти и услуги въз основа на твоите
+              предпочитания и локация.
+            </p>
+          </div> -->
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">🎤</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              Гласови обяви
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Натискаш микрофона, говориш и платформата автоматично създава
+              твоята обява.
+            </p>
+          </div>
+          <!-- ⭐ Рейтинг и отзиви -->
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">⭐</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              Рейтинг и отзиви
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Всеки продавач и майстор има публични оценки и коментари – вземаш
+              решение на база доверие, а не на сляпо.
+            </p>
+          </div>
+
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">📱</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              Мобилно приложение
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Оптимизирано за смартфони с големи бутони и интуитивен интерфейс
+              за всички възрасти.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">🎯</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              Локална фокусировка
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Показваме само релевантни оферти в твоя район - никакви излишни
+              резултати от другия край на страната.
+            </p>
+          </div>
+          <div
+            style="
+              background: var(--light-gray);
+              padding: 32px;
+              border-radius: 20px;
+              text-align: center;
+              transition: 0.3s;
+              cursor: pointer;
+            "
+            onmouseover="this.style.transform='translateY(-6px)'"
+            onmouseout="this.style.transform='translateY(0)'"
+          >
+            <div style="font-size: 3rem; margin-bottom: 16px">🔄</div>
+            <h3
+              style="
+                font-family: 'Poppins', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--charcoal);
+                margin-bottom: 12px;
+              "
+            >
+              Бартер система
+            </h3>
+            <p style="color: var(--dark-gray)">
+              Размяна на продукти и услуги без пари - картофи за сирене, работа
+              за работа.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="background: linear-gradient(135deg, #1f3d1b 0%, #2d5a27 100%); color: white;">
+        <h2 class="section-title" style="color: #fff;">🚀 Бъдещи премиум функции</h2>
+        <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">
+          Първата версия на SelskiPazar.bg е напълно безплатна! Тези разширени функции ще добавим по-късно.
+        </p>
+        
+        <div style="display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 60px;">
+          
+          <!-- AI Асистент Premium -->
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 32px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <span style="font-size: 2.5rem;">🤖</span>
+              <div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 4px;">AI Асистент</h3>
+                <span style="background: #ff8f00; color: white; padding: 4px 8px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;">СКОРО</span>
+              </div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.85); margin-bottom: 20px;">
+              Интелигентни препоръки за продукти и услуги въз основа на твоите предпочитания и локация.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>✨</span> Персонализирани препоръки
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>🎯</span> Умно търсене по предпочитания
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>💡</span> Съвети за най-добри покупки
+              </li>
+            </ul>
+          </div>
+      
+          <!-- Гласови обяви Premium -->
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 32px; border-radius: 20px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+              <span style="font-size: 2.5rem;">🎤</span>
+              <div>
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 4px;">Гласови обяви</h3>
+                <span style="background: #ff8f00; color: white; padding: 4px 8px; border-radius: 8px; font-size: 0.8rem; font-weight: 600;">СКОРО</span>
+              </div>
+            </div>
+            <p style="color: rgba(255, 255, 255, 0.85); margin-bottom: 20px;">
+              Натискаш микрофона, говориш и платформата автоматично създава твоята обява.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0;">
+              <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>🗣️</span> Говориш, то пише автоматично
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>⚡</span> Мигновено публикуване
+              </li>
+              <li style="display: flex; align-items: center; gap: 8px; color: rgba(255, 255, 255, 0.8);">
+                <span>🎯</span> Умно разпознаване на категории
+              </li>
+            </ul>
+          </div>
+      
+          <div style="background: rgba(255,255,255,0.1); padding:32px; border-radius:20px; backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.2);">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+              <span style="font-size:2.5rem;">💳</span>
+              <div>
+                <h3 style="font-family:'Poppins',sans-serif; font-size:1.3rem; font-weight:600; margin-bottom:4px;">Онлайн плащания</h3>
+                <span style="background:#ff8f00; color:white; padding:4px 8px; border-radius:8px; font-size:0.8rem; font-weight:600;">СКОРО</span>
+              </div>
+            </div>
+            <p style="color:rgba(255,255,255,0.85); margin-bottom:20px;">
+              Stripe + BORICA escrow – сигурност за двете страни без кеш рискове.
+            </p>
+          </div>
+      
+        </div>
+      
+        <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(255, 255, 255, 0.08); border-radius: 16px; backdrop-filter: blur(10px);">
+          <h3 style="font-family: 'Poppins', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 12px; color: #ffb74d;">
+            🎉 Първата версия е напълно БЕЗПЛАТНА!
+          </h3>
+          <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 20px;">
+            Започваме с основните функции без никакви такси. Премиум функциите ще добавим въз основа на вашите отзиви.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <span style="background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 8px 16px; border-radius: 20px; font-weight: 600;">✅ Карта с продукти</span>
+            <span style="background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 8px 16px; border-radius: 20px; font-weight: 600;">✅ Директна комуникация</span>
+            <span style="background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 8px 16px; border-radius: 20px; font-weight: 600;">✅ Бартер система</span>
+            <span style="background: rgba(76, 175, 80, 0.2); color: #4caf50; padding: 8px 16px; border-radius: 20px; font-weight: 600;">✅ Основни рейтинги</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= BENEFITS ========= -->
+      <section class="section">
+        <h2 class="section-title">🌟 Защо да избереш SelskiPazar.bg?</h2>
+        <p class="section-subtitle">
+          Предимства, които правят разликата в ежедневието ти.
+        </p>
+        <div class="benefits">
+          <div class="benefit">
+            <span class="benefit-icon">🏆</span>
+            <div class="benefit-content">
+              <h3>Качество и доверие</h3>
+              <p>
+                Верифицирани продавачи с реални отзиви от потребители. Всеки
+                профил е проверен.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">💰</span>
+            <div class="benefit-content">
+              <h3>По-добри цени</h3>
+              <p>
+                Директно от производителя без посредници. Спестяваш пари и
+                подкрепяш местния бизнес.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">⚡</span>
+            <div class="benefit-content">
+              <h3>Бърза доставка</h3>
+              <p>
+                Всичко е наблизо - повечето продукти могат да бъдат доставени в
+                същия ден.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">🌱</span>
+            <div class="benefit-content">
+              <h3>Eco-friendly</h3>
+              <p>
+                Подкрепяш локалното производство и намаляваш въглеродния
+                отпечатък от транспорт.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">👥</span>
+            <div class="benefit-content">
+              <h3>Общност</h3>
+              <p>
+                Създаваш връзки със съседи и местни предприемачи в твоя район.
+              </p>
+            </div>
+          </div>
+          <div class="benefit">
+            <span class="benefit-icon">📞</span>
+            <div class="benefit-content">
+              <h3>Лична комуникация</h3>
+              <p>
+                Говориш директно с човека, който ще ти предостави услугата или
+                продукта.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= PROBLEMS WE SOLVE ========= -->
+      <section class="section">
+        <h2 class="section-title">❌ Проблеми, които решаваме</h2>
+        <p class="section-subtitle">
+          Ежедневни предизвикателства, за които имаме решение.
+        </p>
+        <div style="display: grid; gap: 30px; margin-top: 60px">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 2fr;
+              gap: 40px;
+              padding: 30px;
+              background: var(--light-gray);
+              border-radius: 20px;
+              align-items: center;
+            "
+          >
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">😤</div>
+              <strong style="color: var(--charcoal)">Проблем</strong>
+              <p style="color: var(--medium-gray); margin-top: 8px">
+                Не знам къде да намеря качествена домашна храна в района си
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">✅</div>
+              <strong style="color: var(--primary-green)">Решение</strong>
+              <p style="color: var(--dark-gray); margin-top: 8px">
+                Виждаш на интерактивна карта всички местни производители с
+                оценки и отзиви
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 2fr;
+              gap: 40px;
+              padding: 30px;
+              background: var(--light-gray);
+              border-radius: 20px;
+              align-items: center;
+            "
+          >
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">🔍</div>
+              <strong style="color: var(--charcoal)">Проблем</strong>
+              <p style="color: var(--medium-gray); margin-top: 8px">
+                Трудно намирам надежден майстор за домашни ремонти
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">🛠️</div>
+              <strong style="color: var(--primary-green)">Решение</strong>
+              <p style="color: var(--dark-gray); margin-top: 8px">
+                Портфолио на майстори с примери от работата им и препоръки от
+                клиенти
+              </p>
+            </div>
+          </div>
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 2fr;
+              gap: 40px;
+              padding: 30px;
+              background: var(--light-gray);
+              border-radius: 20px;
+              align-items: center;
+            "
+          >
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">📢</div>
+              <strong style="color: var(--charcoal)">Проблем</strong>
+              <p style="color: var(--medium-gray); margin-top: 8px">
+                Имам излишна продукция/време, но не знам къде да я предложа
+              </p>
+            </div>
+            <div style="text-align: center">
+              <div style="font-size: 3rem; margin-bottom: 12px">🎤</div>
+              <strong style="color: var(--primary-green)">Решение</strong>
+              <p style="color: var(--dark-gray); margin-top: 8px">
+                Натискаш микрофона, казваш обявата и тя излиза на картата за
+                секунди – безплатно.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========= FEEDBACK ========= -->
+      <section class="section feedback-section" id="feedback">
+        <h2 class="section-title" style="color: #fff">
+          💬 Сподели мнението си за бъдещето на SelskiPazar.bg
+        </h2>
+        <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9)">
+          Твоето мнение е важно за нас! Помогни ни да създадем платформата,
+          която България наистина се нуждае.
+        </p>
+        <form
+          class="feedback-form"
+          action="https://forms.gle/your-google-form"
+          method="POST"
+        >
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Възраст</label>
+              <input
+                class="form-input"
+                type="number"
+                name="age"
+                min="12"
+                max="100"
+                placeholder="напр. 35"
+                required
+              />
+            </div>
+            <div>
+              <label class="form-label">Регион</label>
+              <select class="form-select" name="region" required>
+                <option value="">Избери област</option>
+                <option>Благоевград</option>
+                <option>Бургас</option>
+                <option>Варна</option>
+                <option>Велико Търново</option>
+                <option>Видин</option>
+                <option>Враца</option>
+                <option>Габрово</option>
+                <option>Добрич</option>
+                <option>Кърджали</option>
+                <option>Кюстендил</option>
+                <option>Ловеч</option>
+                <option>Монтана</option>
+                <option>Пазарджик</option>
+                <option>Перник</option>
+                <option>Плевен</option>
+                <option>Пловдив</option>
+                <option>Разград</option>
+                <option>Русе</option>
+                <option>Силистра</option>
+                <option>Сливен</option>
+                <option>Смолян</option>
+                <option>София</option>
+                <option>София-област</option>
+                <option>Стара Загора</option>
+                <option>Търговище</option>
+                <option>Хасково</option>
+                <option>Шумен</option>
+                <option>Ямбол</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div>
+              <label class="form-label">Живея в:</label>
+              <select class="form-select" name="location_type" required>
+                <option value="">Избери</option>
+                <option>Голям град (София, Пловдив, Варна, Бургас)</option>
+                <option>Среден град (областен център)</option>
+                <option>Малък град</option>
+                <option>Село</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label"
+                >Бихте ли използвали SelskiPazar.bg?</label
+              >
+              <select class="form-select" name="likelihood" required>
+                <option value="">Избери отговор</option>
+                <option>Определено да - звучи страхотно!</option>
+                <option>Вероятно да - интересно е</option>
+                <option>Не съм сигурен/а</option>
+                <option>По-скоро не</option>
+                <option>Не - не ми трябва</option>
+              </select>
+            </div>
+          </div>
+          <label class="form-label">Коя функция ви впечатлява най-много?</label>
+          <select class="form-select" name="top_feature" required>
+            <option value="">Избери функция</option>
+            <option>Интерактивната карта с локални продукти</option>
+            <option>AI асистент за препоръки</option>
+            <option>Гласови обяви (говориш, то пише)</option>
+            <option>Директно свързване с продавачи</option>
+            <option>Бартер система (размяна без пари)</option>
+            <option>Портфолио на майстори</option>
+          </select>
+          <label class="form-label">Какво най-често купувате/търсите?</label>
+          <select class="form-select" name="most_needed" required>
+            <option value="">Избери категория</option>
+            <option>Домашна храна (яйца, мед, сирене, плодове)</option>
+            <option>Майстори (ремонти, градинарство, почистване)</option>
+            <option>Услуги (транспорт, красота, IT поддръжка)</option>
+            <option>Дом и градина (мебели, инструменти, растения)</option>
+            <option>Всичко от горните</option>
+          </select>
+          <label class="form-label"
+            >Колко бихте платили месечно за премиум достъп? (опционално)</label
+          >
+          <select class="form-select" name="pricing">
+            <option value="">Избери или пропусни</option>
+            <option>Безплатно е достатъчно</option>
+            <option>5-10 лв.</option>
+            <option>10-20 лв.</option>
+            <option>20-30 лв.</option>
+            <option>Повече от 30 лв.</option>
+          </select>
+          <label class="form-label">Идеи, притеснения или предложения:</label>
+          <textarea
+            class="form-textarea"
+            name="comments"
+            placeholder="Какво още бихте искали да има в платформата? Какви притеснения имате? Всяка идея е ценна за нас!"
+          ></textarea>
+          <div
+            style="
+              display: flex;
+              gap: 20px;
+              align-items: center;
+              margin: 20px 0;
+            "
+          >
+            <input
+              type="checkbox"
+              id="newsletter"
+              name="newsletter"
+              style="width: 20px; height: 20px"
+            />
+            <label
+              for="newsletter"
+              style="color: rgba(255, 255, 255, 0.9); font-size: 0.95rem"
+              >Искам да получавам новини за развитието на платформата</label
+            >
+          </div>
+          <button class="submit-btn" type="submit">
+            📤 Изпрати обратната връзка
+          </button>
+        </form>
+      </section>
+
+      <!-- ========= CALL TO ACTION ========= -->
+      <section
+        class="section"
+        style="
+          text-align: center;
+          background: var(--gradient-nature);
+          color: var(--white);
+        "
+      >
+        <h2
+          style="
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+          "
+        >
+          🚀 Готови сме да започнем!
+        </h2>
+        <p
+          style="
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.95;
+          "
+        >
+          SelskiPazar.bg ще стартира скоро. Бъди сред първите, които ще
+          използват най-иновativната локална платформа в България.
+        </p>
+        <div
+          style="
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a
+            href="#feedback"
+            class="btn"
+            style="
+              background: var(--white);
+              color: var(--primary-green);
+              font-weight: 600;
+              box-shadow: var(--shadow-lg);
+            "
+            >💌 Искам да участвам</a
+          >
+          <a
+            href="mailto:contact@selskipazar.bg"
+            class="btn"
+            style="
+              background: rgba(255, 255, 255, 0.15);
+              color: var(--white);
+              border: 2px solid rgba(255, 255, 255, 0.35);
+              backdrop-filter: blur(10px);
+            "
+            >📧 Свържи се с нас</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- ========= FOOTER ========= -->
     <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h3>Платформа</h3>
-            <ul>
-              <li><a href="#mission">Мисия</a></li>
-              <li><a href="#features">Функции</a></li>
-              <li><a href="#how">Как работи</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Ресурси</h3>
-            <ul>
-              <li><a href="#">Помощен център</a></li>
-              <li><a href="#">Блог</a></li>
-              <li><a href="#">API статус</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Контакти</h3>
-            <ul>
-              <li>support@selskipazar.bg</li>
-              <li>+359 888 123 456</li>
-              <li>гр. Плевен</li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h3>Социални мрежи</h3>
-            <ul>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">TikTok</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          © 2025 SelskiPazar.bg — Създадено с ❤️ в България.
-        </div>
+      <h3>Създадено с ❤️ за съвременна България</h3>
+      <p>Свързваме минали традиции с бъдещи технологии</p>
+      <p style="margin-top: 10px">
+        © 2025 SelskiPazar.bg • contact@selskipazar.bg • +359 XXX XXX XXX
+      </p>
+      <div class="footer-links">
+        <a href="#about" class="footer-link">За платформата</a>
+        <a href="#how-it-works" class="footer-link">Как работи</a>
+        <a href="#feedback" class="footer-link">Обратна връзка</a>
+        <a href="mailto:contact@selskipazar.bg" class="footer-link">Контакти</a>
       </div>
     </footer>
   </body>
