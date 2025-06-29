@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SelskiPazar.bg – Мястото, където селото оживява онлайн</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== RESET & ROOT ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --primary-green: #2d5a27;
+        --primary-light: #4a7c59;
+        --primary-dark: #1f3d1b;
+        --nature-green: #7cb342;
+        --forest-green: #2e7d32;
+        --accent-gold: #f57c00;
+        --accent-orange: #ff6b35;
+        --accent-warm: #ffb74d;
+        --white: #fff;
+        --cream: #faf9f7;
+        --light-gray: #f5f7fa;
+        --medium-gray: #64748b;
+        --charcoal: #0f172a;
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 /0.1),
+          0 4px 6px -4px rgb(0 0 0 /0.1);
+        --gradient-primary: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          var(--forest-green) 100%
+        );
+        --gradient-nature: linear-gradient(
+          135deg,
+          var(--nature-green) 0%,
+          var(--primary-light) 100%
+        );
+        --gradient-warm: linear-gradient(
+          135deg,
+          var(--accent-warm) 0%,
+          var(--accent-orange) 100%
+        );
+      }
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: var(--cream);
+        color: var(--charcoal);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* ===== HEADER ===== */
+      .header {
+        background: var(--white);
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+      .nav-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      .nav-logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-decoration: none;
+      }
+      .nav-menu {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-link {
+        font-weight: 500;
+        color: var(--charcoal);
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: 0.3s;
+      }
+      .nav-link:hover,
+      .nav-link.active {
+        background: rgba(45, 90, 39, 0.07);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-primary {
+        background: var(--gradient-primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+      }
+      .btn-secondary {
+        background: var(--white);
+        color: var(--primary-green);
+        border: 2px solid var(--primary-green);
+      }
+      .btn-secondary:hover {
+        background: var(--primary-green);
+        color: #fff;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green) 0%,
+          var(--forest-green) 50%,
+          var(--nature-green) 100%
+        );
+        padding: 100px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .hero .subtitle {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 300;
+        margin-bottom: 40px;
+        max-width: 760px;
+        margin-inline: auto;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* ===== GENERIC SECTIONS ===== */
+      section {
+        scroll-margin-top: 96px;
+      }
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 60px;
+        position: relative;
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90px;
+        height: 3px;
+        background: var(--gradient-warm);
+        border-radius: 2px;
+      }
+
+      /* ===== GRID HELPERS ===== */
+      .grid-auto {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+      .card {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 40px 32px;
+        text-align: center;
+        box-shadow: var(--shadow-lg);
+        transition: 0.4s;
+      }
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      /* ===== FEATURES ===== */
+      .feature-icon {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        color: var(--primary-green);
+      }
+      .feature-desc {
+        color: var(--medium-gray);
+        font-size: 0.95rem;
+      }
+
+      /* ===== HOW IT WORKS ===== */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+        text-align: center;
+      }
+      .step-number {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--primary-green);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 18px;
+        font-weight: 700;
+      }
+
+      /* ===== TESTIMONIALS ===== */
+      .testimonials-section {
+        background: var(--light-gray);
+        padding: 80px 0;
+      }
+      .testimonial-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: var(--shadow-lg);
+      }
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 20px;
+      }
+      .author-img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--gradient-nature);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: #fff;
+      }
+
+      /* ===== MISSION ===== */
+      .mission-section {
+        background: var(--white);
+        padding: 80px 0;
+      }
+      .mission-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 60px;
+        align-items: center;
+      }
+      .mission-text {
+        flex: 1 1 480px;
+      }
+      .mission-img {
+        flex: 1 1 320px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+      }
+      .mission-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ===== STATS ===== */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 30px;
+      }
+      .stat-card {
+        background: var(--gradient-nature);
+        color: #fff;
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+      }
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      .stat-label {
+        opacity: 0.9;
+      }
+
+      /* ===== CTA ===== */
+      .cta-section {
+        background: var(--gradient-primary);
+        color: #fff;
+        text-align: center;
+        padding: 90px 24px;
+      }
+      .cta-title {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .cta-desc {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-inline: auto;
+      }
+
+      /* ===== FOOTER ===== */
+      .footer {
+        background: var(--charcoal);
+        color: #fff;
+        padding: 60px 0 40px;
+      }
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-section h3 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+      }
+      .footer-section a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: 0.3s;
+      }
+      .footer-section a:hover {
+        color: var(--accent-warm);
+      }
+      .footer-bottom {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.45);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 26px;
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+        .mission-grid {
+          flex-direction: column;
+        }
+        .hero {
+          padding: 80px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="nav-container">
+          <a href="#" class="nav-logo">🌾 SelskiPazar.bg</a>
+          <nav>
+            <ul class="nav-menu">
+              <li>
+                <a href="#mission" class="nav-link active">Нашата мисия</a>
+              </li>
+              <li><a href="#features" class="nav-link">Функции</a></li>
+              <li><a href="#how" class="nav-link">Как работи</a></li>
+              <li><a href="#community" class="nav-link">Общност</a></li>
+              <li><a href="#" class="btn btn-secondary">Вход</a></li>
+              <li><a href="#" class="btn btn-primary">Добави обява</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Селото среща бъдещето</h1>
+        <p class="subtitle">
+          Един клик – и вече си до фермера, майстора или съседа с най‑сладкия
+          мед. Ние свързваме хора, не просто профили.
+        </p>
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary"
+            >Разгледай възможностите</a
+          >
+          <a href="#mission" class="btn btn-secondary">Научи повече</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="mission-section">
+      <div class="container">
+        <div class="mission-grid">
+          <div class="mission-text">
+            <h2 class="section-title">Нашата мисия</h2>
+            <p>
+              Да вдъхнем дигитален живот на българското село – без да сменяме
+              неговия дух. <strong>SelskiPazar.bg</strong> е мястото, където
+              локалните умения и вкусове стават видими за цялата страна. Без
+              скрити такси, без сложни правила – просто истински хора, готови да
+              си помагат.
+            </p>
+            <p>
+              Платформата е безплатна за всеки, който търси продукт или услуга.
+              Продавачите получават първите си обяви като подарък, за да можем
+              заедно да изградим доверие и споделена стойност.
+            </p>
+          </div>
+          <div class="mission-img">
+            <img
+              src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1000&q=80"
+              alt="Български пейзаж"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section
+      id="features"
+      class="mission-section"
+      style="background: var(--light-gray)"
+    >
+      <div class="container">
+        <h2 class="section-title">Какво прави SelskiPazar.bg различен?</h2>
+        <div class="grid-auto">
+          <div class="card">
+            <span class="feature-icon">📍</span>
+            <h3>Локализирано търсене</h3>
+            <p class="feature-desc">
+              Филтрирай по разстояние и виж само хора, които наистина са ти
+              наблизо.
+            </p>
+          </div>
+          <div class="card">
+            <span class="feature-icon">🤝</span>
+            <h3>Директна връзка</h3>
+            <p class="feature-desc">
+              Чат, обаждане или видео – избираш най‑удобния начин да се
+              договориш без посредници.
+            </p>
+          </div>
+          <div class="card">
+            <span class="feature-icon">🤖</span>
+            <h3>Умен помощник</h3>
+            <p class="feature-desc">
+              AI, който намира точния човек за задачата и пише описание вместо
+              теб.
+            </p>
+          </div>
+          <div class="card">
+            <span class="feature-icon">🛡️</span>
+            <h3>Прозрачност & доверие</h3>
+            <p class="feature-desc">
+              Верифицирани профили и рейтинг само от реални клиенти – никакви
+              фалшиви звезди.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how" class="mission-section">
+      <div class="container">
+        <h2 class="section-title">3 стъпки и си готов</h2>
+        <div class="steps-grid">
+          <div class="card">
+            <div class="step-number">1</div>
+            <h4>Търсиш</h4>
+            <p>Избираш категория или просто пишеш „домашно сирене“.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">2</div>
+            <h4>Свързваш се</h4>
+            <p>Отваряш чат или звъниш веднага през приложението.</p>
+          </div>
+          <div class="card">
+            <div class="step-number">3</div>
+            <h4>Получаваш</h4>
+            <p>
+              Вземаш продукта/услугата и оценяваш. Така помагаш на следващия
+              клиент.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="community" class="testimonials-section">
+      <div class="container">
+        <h2 class="section-title">Гласове от общността</h2>
+        <div class="grid-auto">
+          <div class="testimonial-card">
+            <p>
+              “Продадох първия си мед за две минути, без да плащам нищо
+              предварително. Хората идват направо у дома!”
+            </p>
+            <div class="testimonial-author">
+              <div class="author-img">🐝</div>
+              <span>Илия, пчелар – с. Равна</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              “Намерих майстор за ламаринения покрив, който живее на 5 км.
+              Договорихме се в чата, на другия ден беше готово.”
+            </p>
+            <div class="testimonial-author">
+              <div class="author-img">🔨</div>
+              <span>Гергана – с. Мечка</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              “AI‑помощникът ми предложи идеално описание за моите сирена,
+              изглежда супер професионално.”
+            </p>
+            <div class="testimonial-author">
+              <div class="author-img">🧀</div>
+              <span>Соня – мандра „Бял върх“</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="mission-section" style="background: var(--white)">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number">5 000+</div>
+            <div class="stat-label">Активни обяви</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1 200+</div>
+            <div class="stat-label">Проверени профила</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">320</div>
+            <div class="stat-label">Услуги за селото</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Доволни потребители</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="cta-title">
+          Смяташ ли, че твоят труд заслужава повече видимост?
+        </h2>
+        <p class="cta-desc">
+          Присъедини се безплатно, сподели това, което правиш най‑добре, и
+          намери хора, които го ценят.
+        </p>
+        <a href="#" class="btn btn-primary">Създай профил за минута</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Платформа</h3>
+            <ul>
+              <li><a href="#mission">Мисия</a></li>
+              <li><a href="#features">Функции</a></li>
+              <li><a href="#how">Как работи</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Ресурси</h3>
+            <ul>
+              <li><a href="#">Помощен център</a></li>
+              <li><a href="#">Блог</a></li>
+              <li><a href="#">API статус</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Контакти</h3>
+            <ul>
+              <li>support@selskipazar.bg</li>
+              <li>+359 888 123 456</li>
+              <li>гр. Плевен</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Социални мрежи</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">TikTok</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          © 2025 SelskiPazar.bg — Създадено с ❤️ в България.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
