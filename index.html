@@ -243,6 +243,14 @@
         margin: 0 auto 60px;
       }
 
+      .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 56px;
+        margin-top: 60px;
+        align-items: center;
+      }
+
       /* ================= HOW IT WORKS ================= */
       .how-it-works {
         display: grid;
@@ -421,6 +429,52 @@
         font-size: clamp(0.9rem, 2.5vw, 1rem);
       }
 
+      /* ================= PROBLEMS WE SOLVE ================= */
+      .problems-grid-outter {
+        display: grid;
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .problems-grid-inner,
+      .problem-row {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 40px;
+        padding: 30px;
+        background: var(--light-gray);
+        border-radius: 20px;
+        align-items: center;
+      }
+      .problem-box {
+        text-align: center;
+      }
+
+      .problem-icon {
+        font-size: 3rem;
+        margin-bottom: 12px;
+      }
+
+      .problem-label {
+        color: var(--charcoal);
+        font-weight: bold;
+      }
+
+      .solution-label {
+        color: var(--primary-green);
+        font-weight: bold;
+      }
+
+      .problem-text {
+        color: var(--medium-gray);
+        margin-top: 8px;
+      }
+
+      .solution-text {
+        color: var(--dark-gray);
+        margin-top: 8px;
+      }
+
       /* ================= FEEDBACK ================= */
       .feedback-section {
         background: var(--gradient-primary);
@@ -429,63 +483,7 @@
       .feedback-section::before {
         display: none;
       }
-      .feedback-form {
-        max-width: 780px;
-        margin: 0 auto;
-      }
-      .form-grid {
-        display: grid;
-        gap: 30px;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        margin-bottom: 40px;
-      }
-      .form-group {
-        margin-bottom: 24px;
-      }
-      .form-label {
-        display: block;
-        font-family: "Poppins", sans-serif;
-        font-weight: 600;
-        margin-bottom: 8px;
-        font-size: clamp(0.9rem, 2.5vw, 1rem);
-      }
-      .form-input,
-      .form-select,
-      .form-textarea {
-        width: 100%;
-        padding: 16px 20px;
-        border: 2px solid rgba(255, 255, 255, 0.25);
-        border-radius: 12px;
-        background: rgba(255, 255, 255, 0.12);
-        color: var(--white);
-        font-size: clamp(0.9rem, 2.5vw, 1rem);
-        backdrop-filter: blur(10px);
-        transition: 0.3s;
-      }
-      .form-input::placeholder,
-      .form-textarea::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      .form-input:focus,
-      .form-select:focus,
-      .form-textarea:focus {
-        outline: none;
-        border-color: var(--accent-warm);
-        box-shadow: 0 0 0 3px rgba(255, 183, 77, 0.25);
-        background: rgba(255, 255, 255, 0.18);
-      }
-      .form-select {
-        appearance: none;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-        background-position: right 12px center;
-        background-repeat: no-repeat;
-        background-size: 16px;
-        padding-right: 42px;
-      }
-      .form-textarea {
-        resize: vertical;
-        min-height: 120px;
-      }
+
       .submit-btn {
         background: var(--gradient-harvest);
         color: var(--white);
@@ -597,6 +595,17 @@
           font-size: 1rem;
         }
 
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 24px;
+          margin-top: 30px;
+        }
+
+        .about-grid > * {
+          width: 100%;
+        }
+
         .how-it-works {
           grid-template-columns: 1fr;
           gap: 30px;
@@ -635,15 +644,26 @@
           align-self: center;
         }
 
-        .form-grid {
+        .problems-grid-inner,
+        .problem-row {
           grid-template-columns: 1fr;
-          gap: 20px;
+          text-align: center;
+          gap: 24px;
+          padding: 24px;
         }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
-          padding: 14px 16px;
+        .problem-icon {
+          font-size: 2.2rem;
+        }
+
+        .problem-text,
+        .solution-text {
+          font-size: 1rem;
+        }
+
+        .problem-label,
+        .solution-label {
+          font-size: 1.1rem;
         }
 
         .submit-btn {
@@ -663,8 +683,8 @@
         }
 
         .cta-section {
-          min-height: 400px;
-          padding: 30px 16px;
+          min-height: 500px;
+          padding: 32px 16px;
         }
       }
 
@@ -695,75 +715,11 @@
         }
 
         .footer {
-          padding: 50px 16px 25px;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-          padding: 12px 14px;
+          padding: 50px 20px 25px;
         }
 
         .example-tag {
           padding: 3px 8px;
-        }
-      }
-
-      @media (max-width: 768px) {
-        body {
-          font-size: 0.9rem;
-        }
-        .hero .container,
-        main.container {
-          padding: 0 16px;
-        }
-        .hero-content {
-          padding: 20px 0;
-        }
-        .hero-buttons {
-          flex-direction: column;
-          gap: 12px;
-        }
-        .how-it-works {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-        .how-it-works .step {
-          text-align: center;
-        }
-        section .grid,
-        .categories,
-        .benefits,
-        .unique-features,
-        .premium-features {
-          display: block;
-        }
-        .categories .category-card,
-        .benefit,
-        .unique-features > div,
-        .premium-features > div {
-          width: 100% !important;
-          margin-bottom: 24px;
-        }
-        .categories .category-examples,
-        .category-content {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-        }
-        .category-examples .example-tag {
-          flex: 1 1 calc(50% - 8px);
-        }
-        .feedback-section iframe {
-          width: 100% !important;
-          height: auto !important;
-        }
-        .footer-links {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          align-items: center;
         }
       }
     </style>
@@ -818,15 +774,7 @@
           >, която показва на интерактивна карта къде са най-близките продукти и
           услуги.
         </p>
-        <div
-          style="
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 56px;
-            margin-top: 60px;
-            align-items: center;
-          "
-        >
+        <div class="about-grid">
           <div>
             <h3
               style="
@@ -1776,83 +1724,55 @@
         <p class="section-subtitle">
           Ежедневни предизвикателства, за които имаме решение.
         </p>
-        <div style="display: grid; gap: 30px; margin-top: 60px">
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 2fr;
-              gap: 40px;
-              padding: 30px;
-              background: var(--light-gray);
-              border-radius: 20px;
-              align-items: center;
-            "
-          >
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">😤</div>
-              <strong style="color: var(--charcoal)">Проблем</strong>
-              <p style="color: var(--medium-gray); margin-top: 8px">
+        <div class="problems-grid-outter">
+          <div class="problem-row">
+            <div class="problem-box">
+              <div class="problem-icon">😤</div>
+              <div class="problem-label">Проблем</div>
+              <p class="problem-text">
                 Не знам къде да намеря качествена домашна храна в района си
               </p>
             </div>
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">✅</div>
-              <strong style="color: var(--primary-green)">Решение</strong>
-              <p style="color: var(--dark-gray); margin-top: 8px">
+            <div class="problem-box">
+              <div class="problem-icon">✅</div>
+              <div class="solution-label">Решение</div>
+              <p class="solution-text">
                 Виждаш на интерактивна карта всички местни производители с
                 оценки и отзиви
               </p>
             </div>
           </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 2fr;
-              gap: 40px;
-              padding: 30px;
-              background: var(--light-gray);
-              border-radius: 20px;
-              align-items: center;
-            "
-          >
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">🔍</div>
-              <strong style="color: var(--charcoal)">Проблем</strong>
-              <p style="color: var(--medium-gray); margin-top: 8px">
+
+          <div class="problem-row">
+            <div class="problem-box">
+              <div class="problem-icon">🔍</div>
+              <div class="problem-label">Проблем</div>
+              <p class="problem-text">
                 Трудно намирам надежден майстор за домашни ремонти
               </p>
             </div>
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">🛠️</div>
-              <strong style="color: var(--primary-green)">Решение</strong>
-              <p style="color: var(--dark-gray); margin-top: 8px">
+            <div class="problem-box">
+              <div class="problem-icon">🛠️</div>
+              <div class="solution-label">Решение</div>
+              <p class="solution-text">
                 Портфолио на майстори с примери от работата им и препоръки от
                 клиенти
               </p>
             </div>
           </div>
-          <div
-            style="
-              display: grid;
-              grid-template-columns: 1fr 2fr;
-              gap: 40px;
-              padding: 30px;
-              background: var(--light-gray);
-              border-radius: 20px;
-              align-items: center;
-            "
-          >
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">📢</div>
-              <strong style="color: var(--charcoal)">Проблем</strong>
-              <p style="color: var(--medium-gray); margin-top: 8px">
+
+          <div class="problem-row">
+            <div class="problem-box">
+              <div class="problem-icon">📢</div>
+              <div class="problem-label">Проблем</div>
+              <p class="problem-text">
                 Имам излишна продукция/време, но не знам къде да я предложа
               </p>
             </div>
-            <div style="text-align: center">
-              <div style="font-size: 3rem; margin-bottom: 12px">🎤</div>
-              <strong style="color: var(--primary-green)">Решение</strong>
-              <p style="color: var(--dark-gray); margin-top: 8px">
+            <div class="problem-box">
+              <div class="problem-icon">🎤</div>
+              <div class="solution-label">Решение</div>
+              <p class="solution-text">
                 Добавяш обявата с <strong>няколко клика</strong> и тя се показва
                 на картата за секунди – безплатно.
               </p>
