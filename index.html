@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SelskiPazar – Селската търговска мрежа на България</title>
+    <link rel="icon" href="assets/images/logo.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <meta name="theme-color" content="#2d5a27" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -84,8 +87,12 @@
       /* ================= HERO ================= */
       .hero {
         background: var(--gradient-primary);
-        padding: 90px 0 120px;
+        padding: 90px 0;
+        height: 100vh;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: relative;
         overflow: hidden;
       }
@@ -103,6 +110,10 @@
         margin: 0 auto;
       }
       .hero h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
         font-family: "Poppins", sans-serif;
         font-size: clamp(2.8rem, 6vw, 4.5rem);
         font-weight: 800;
@@ -110,6 +121,11 @@
         margin-bottom: 28px;
         text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
+      .hero h1 img{ 
+        height: 120px; 
+        margin-top: -20px;
+      }
+
       .hero .subtitle {
         font-size: clamp(1.1rem, 3vw, 1.6rem);
         color: rgba(255, 255, 255, 0.96);
@@ -294,7 +310,7 @@
         animation: shimmer 3s infinite;
       }
 
-      .cta-section{
+      .cta-section {
         height: 70vh;
         background: var(--gradient-nature);
         display: flex;
@@ -551,7 +567,13 @@
     <header class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1>🌾 SelskiPazar</h1>
+          <h1>
+            <img
+              src="assets/images/logo.png"
+              alt="SelskiPazar Logo"
+            />
+            SelskiPazar
+          </h1>
           <p class="subtitle">
             Ние сме <strong>Ива и Симо</strong> от YouTube канала
             <strong>„Земята Живее“</strong>. Представяме
@@ -1676,10 +1698,7 @@
       </section>
 
       <!-- ========= CALL TO ACTION ========= -->
-      <section
-        class="section cta-section"
-        id="contact"
-      >
+      <section class="section cta-section" id="contact">
         <h2
           style="
             font-family: 'Poppins', sans-serif;
@@ -1703,25 +1722,18 @@
           "
         >
           След като съберем и анализираме вашата обратна връзка, ще започнем
-          разработката на SelskiPazar. Остави ни мнение или се свържи
-          директно:
+          разработката на SelskiPazar. Остави ни мнение или се свържи директно:
         </p>
 
         <!-- Новият „контакт-блок“ -->
-        <div class="hero-buttons" style="margin-bottom: 10px;">
+        <div class="hero-buttons" style="margin-bottom: 10px">
           <!-- e-mail -->
-          <a
-            href="mailto:zemyatajivee@gmail.com"
-            class="btn btn-primary"
-          >
+          <a href="mailto:zemyatajivee@gmail.com" class="btn btn-primary">
             ✉️ zemyatajivee@gmail.com
           </a>
 
           <!-- телефон -->
-          <a
-            href="tel:+359877554326"
-            class="btn btn-secondary"
-          >
+          <a href="tel:+359877554326" class="btn btn-secondary">
             📞 +359 87 755 4326
           </a>
         </div>
