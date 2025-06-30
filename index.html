@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SelskiPazar.bg – Селската търговска мрежа на България</title>
+    <title>SelskiPazar – Селската търговска мрежа на България</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -293,6 +293,34 @@
         );
         animation: shimmer 3s infinite;
       }
+
+      .cta-section{
+        height: 70vh;
+        background: var(--gradient-nature);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.1) 60%,
+          transparent 70%
+        );
+        animation: shimmer 3s infinite;
+      }
+
       @keyframes shimmer {
         0% {
           transform: translateX(-100%);
@@ -523,11 +551,12 @@
     <header class="hero">
       <div class="container">
         <div class="hero-content">
-          <h1>🌾 SelskiPazar.bg</h1>
+          <h1>🌾 SelskiPazar</h1>
           <p class="subtitle">
             Ние сме <strong>Ива и Симо</strong> от YouTube канала
-            <strong>„Земята Живее“</strong>. Представяме <em>концепцията</em> SelskiPazar.bg
-            и търсим вашия фийдбек, за да я направим реалност.            
+            <strong>„Земята Живее“</strong>. Представяме
+            <em>концепцията</em> SelskiPazar и търсим вашия фийдбек, за да я
+            направим реалност.
           </p>
           <div class="hero-buttons">
             <a href="#feedback" class="btn btn-primary">🚀 Искам да участвам</a>
@@ -968,6 +997,7 @@
         </div>
       </section>
 
+      <!-- ========= PREMIUM FEATURES ========= -->
       <section
         class="section"
         style="
@@ -979,7 +1009,7 @@
           🚀 Бъдещи премиум функции
         </h2>
         <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9)">
-          Първата версия на SelskiPazar.bg е напълно безплатна! Тези разширени
+          Първата версия на SelskiPazar е напълно безплатна! Тези разширени
           функции ще добавим по-късно.
         </p>
 
@@ -1465,7 +1495,7 @@
 
       <!-- ========= BENEFITS ========= -->
       <section class="section">
-        <h2 class="section-title">🌟 Защо да избереш SelskiPazar.bg?</h2>
+        <h2 class="section-title">🌟 Защо да избереш SelskiPazar?</h2>
         <p class="section-subtitle">
           Предимства, които правят разликата в ежедневието ти.
         </p>
@@ -1626,29 +1656,29 @@
       <!-- ========= FEEDBACK ========= -->
       <section class="section feedback-section" id="feedback">
         <h2 class="section-title" style="color: #fff">
-          💬 Сподели мнението си за бъдещето на SelskiPazar.bg
+          💬 Сподели мнението си за бъдещето на SelskiPazar
         </h2>
         <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9)">
           Твоето мнение е важно за нас! Помогни ни да създадем платформата,
           която България наистина се нуждае.
         </p>
-        <form
-          class="feedback-form"
-          action="https://forms.gle/your-google-form"
-          method="POST"
-        >
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdwLqaz7sPdRhPzXYc8idPwkPohyMuUKnf4a-YiVShka9gGlg/viewform?embedded=true" width="640" height="2152" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        </form>
+        <div style="display: flex; justify-content: center; overflow: hidden">
+          <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSdwLqaz7sPdRhPzXYc8idPwkPohyMuUKnf4a-YiVShka9gGlg/viewform?embedded=true"
+            width="640"
+            height="2200"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            >Loading…</iframe
+          >
+        </div>
       </section>
 
       <!-- ========= CALL TO ACTION ========= -->
       <section
-        class="section"
-        style="
-          text-align: center;
-          background: var(--gradient-nature);
-          color: var(--white);
-        "
+        class="section cta-section"
+        id="contact"
       >
         <h2
           style="
@@ -1659,8 +1689,9 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
           "
         >
-          🚀 Готови сме да започнем!
+          Готови сме да започнем!
         </h2>
+
         <p
           style="
             font-size: 1.2rem;
@@ -1671,39 +1702,28 @@
             opacity: 0.95;
           "
         >
-          SelskiPazar.bg ще стартира скоро. Бъди сред първите, които ще
-          използват най-иновativната локална платформа в България.
+          След като съберем и анализираме вашата обратна връзка, ще започнем
+          разработката на SelskiPazar. Остави ни мнение или се свържи
+          директно:
         </p>
-        <div
-          style="
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-          "
-        >
-          <a
-            href="#feedback"
-            class="btn"
-            style="
-              background: var(--white);
-              color: var(--primary-green);
-              font-weight: 600;
-              box-shadow: var(--shadow-lg);
-            "
-            >💌 Искам да участвам</a
-          >
+
+        <!-- Новият „контакт-блок“ -->
+        <div class="hero-buttons" style="margin-bottom: 10px;">
+          <!-- e-mail -->
           <a
             href="mailto:zemyatajivee@gmail.com"
-            class="btn"
-            style="
-              background: rgba(255, 255, 255, 0.15);
-              color: var(--white);
-              border: 2px solid rgba(255, 255, 255, 0.35);
-              backdrop-filter: blur(10px);
-            "
-            >📧 Свържи се с нас</a
+            class="btn btn-primary"
           >
+            ✉️ zemyatajivee@gmail.com
+          </a>
+
+          <!-- телефон -->
+          <a
+            href="tel:+359877554326"
+            class="btn btn-secondary"
+          >
+            📞 +359 87 755 4326
+          </a>
         </div>
       </section>
     </main>
@@ -1714,7 +1734,7 @@
 
       <p>
         Сблъскахме се с липсата на достъп до чиста храна и надеждни майстори –
-        затова изграждаме SelskiPazar.bg, за да улесним <em>вас</em>, хората от
+        затова изграждаме SelskiPazar, за да улесним <em>вас</em>, хората от
         града и селото.
       </p>
 
@@ -1729,7 +1749,7 @@
         <a href="#about" class="footer-link">За платформата</a>
         <a href="#how-it-works" class="footer-link">Как работи</a>
         <a href="#feedback" class="footer-link">Обратна връзка</a>
-        <a href="mailto:zemyatajivee@gmail.com" class="footer-link">Контакти</a>
+        <a href="#contact" class="footer-link">Контакти</a>
       </div>
     </footer>
   </body>
